@@ -1,4 +1,3 @@
 # Project-Chittagong
 
-build a chat messaging intercome widget for website, which will help client to engage and interect with their customer more 
-effectively and efficiently.
+Build a chat messaging intercome widget for website, which will help client to engage and interact with customers more effectively and efficiently.
