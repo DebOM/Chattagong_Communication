@@ -15,5 +15,18 @@
   "bugs": {
     "url": "https://github.com/DebOM/Project-Chittagong/issues"
   },
-  "homepage": "https://github.com/DebOM/Project-Chittagong#readme"
+  "homepage": "https://github.com/DebOM/Project-Chittagong#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^3.2.0",
+    "webpack-dev-server": "^2.5.1"
+  }
 }
