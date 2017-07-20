@@ -1,0 +1,61 @@
+body {
+  background-color: #F8F8F8 !important;
+}
+#app{
+  display:block;
+  position:absolute;
+  float:right;
+  bottom:0px;
+  right:20px;
+}
+.chatButton {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    height: 45px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    font-size: 13px;
+    line-height: 45px;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    border-radius: 40px;
+    background-color: #7e93af;
+    text-align: center;
+    transition: all .12s;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.ButtonContent {
+    background-image: url(https://js.intercomcdn.com/images/new-conversation.40b12105.png);
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 15px 14px;
+    padding-left: 24px;
+    white-space: nowrap;
+}
+
+#intercom-container .intercom-launcher-open-icon {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR…yCkCBlB6ACHUFlbeAyiDCnwGBLJREKSSjCqfYs+edYrH/16LJPC4LGtQAAAABJRU5ErkJggg==);
+    background-size: 32px 36px;
+    background-repeat: no-repeat;
+    background-position: center 14px;
+    opacity: 1;
+    -webkit-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+}
+/*#intercom-container .intercom-launcher-close-icon, #intercom-container .intercom-launcher-open-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    transition: opacity .08s linear,-webkit-transform .16s linear;
+    transition: transform .16s linear,opacity .08s linear;
+    transition: transform .16s linear,opacity .08s linear,   -webkit-transform .16s linear;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}*/
