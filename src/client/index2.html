@@ -80,10 +80,13 @@
           if(data){
             $userFormArea.hide();
             $messageArea.show();
+          }else{
+            alert('Please Type your name');
           }
         });
         $username.val('');
       });
+
       socket.on('get users', function(data){
         var html = '';
         for(var i = 0; i < data.length; i++){
