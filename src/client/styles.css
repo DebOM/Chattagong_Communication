@@ -1,65 +1,117 @@
+/*the company component style starts from here*/
+
 body {
   background-color: #F8F8F8 !important;
   font-family: 'Roboto', sans-serif;
 }
-#app{
+
+._window {
+
+}
+
+._windowHeader {
+  background-color: #1F8CEB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  height: 75px;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+._windowHeader p {
+  font-size: 16px;
+  margin: 0;
+}
+
+._windowHeader span {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+._windowBody {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #1F8CEB;
+  display: flex;
+  flex-direction: row;
+}
+
+._windowLeft {
+  width: 40%;
+}
+
+._onlineClients {
+  min-height: 275px;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-color: #1F8CEB;
+}
+
+._offlineClients {
+  min-height: 275px;
+  text-align: center;
+}
+
+._windowRight {
+  width: 60%;
+  border-left-width: 5px;
+  border-color: #1F8CEB;
+  border-left-style: solid;
+}
+
+._chatWindow {
+  text-align: center;
+}
+.chatArea {
+  min-height: 464px;
+}
+
+._textArea {
+  padding: 18px 0px 18px 30px;
+  /*border: none;*/
+  width: 95%;
+  font-size: 15px;
+  color: rgb(86, 88, 103);
+  background-color: rgb(244, 247, 249);
+  margin-right: 5px;
+  /*height: 55px;*/
+}
+
+._windowFooter {
+  background-color: #1F8CEB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  height: 75px;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/*this is the end of company side styling*/
+
+/*this is the start of the client side styling*/
+
+#client{
   display:block;
   position:absolute;
   float:right;
   bottom:0px;
   right:20px;
 }
-.chatButton {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    height: 45px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: #fff;
-    font-size: 13px;
-    line-height: 45px;
-    pointer-events: auto;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,.1);
-    border-radius: 40px;
-    background-color: #7e93af;
-    text-align: center;
-    transition: all .12s;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-.ButtonContent {
-    background-image: url(https://js.intercomcdn.com/images/new-conversation.40b12105.png);
-    background-repeat: no-repeat;
-    background-position: 0;
-    background-size: 15px 14px;
-    padding-left: 24px;
-    white-space: nowrap;
-}
 
-#intercom-container .intercom-launcher-open-icon {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAAXNSR…yCkCBlB6ACHUFlbeAyiDCnwGBLJREKSSjCqfYs+edYrH/16LJPC4LGtQAAAABJRU5ErkJggg==);
-    background-size: 32px 36px;
-    background-repeat: no-repeat;
-    background-position: center 14px;
-    opacity: 1;
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
+
+.msgFormat {
+  padding: 10px 0 10px 0;
 }
-/*#intercom-container .intercom-launcher-close-icon, #intercom-container .intercom-launcher-open-icon {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    transition: opacity .08s linear,-webkit-transform .16s linear;
-    transition: transform .16s linear,opacity .08s linear;
-    transition: transform .16s linear,opacity .08s linear,   -webkit-transform .16s linear;
-    background-position: 50%;
-    background-repeat: no-repeat;
-}*/
 
 .container {
   min-width: '200px';
@@ -92,19 +144,24 @@ body {
 }
 
 .window-header p {
-    font-size: 16px;
-    margin: 0;
+  font-size: 16px;
+  margin: 0;
 }
 
 .window-header span {
-    font-size: 13px;
-    font-weight: 300;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 .window,
 .window-body,
 .window-footer {
   background-color: white;
+}
+
+.window-body {
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .window-footer {
@@ -119,7 +176,7 @@ body {
   margin-bottom: 20px;
   width: 170px;
   height: 45px;
-  /* border: 0; */
+   /*border: 0; */
   background-color: rgb(126,147,175);
   color: white;
   font-size: 13px;
@@ -146,13 +203,32 @@ body {
 }
 
 .nameEntry {
-    height: 45px;
-    border: 0;
-    font-size: 13px;
-    font-weight: 300;
-    text-align: center;
+  height: 45px;
+  border: 0;
+  font-size: 13px;
+  font-weight: 300;
+  text-align: center;
+  outline: 0;
 }
 
+a {
+  text-decoration: none;
+  color: #b8c3ca;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 24px;
+  padding: 0 20px 0 44px;
+  border-radius: 17px;
+  background-color: hsla(0,0%,100%,.7);
+  opacity: .7;
+  background-image: url(https://js.intercomcdn.com/images/intercom-link-logo.dcb0e594.png);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 20px;
+}
+.chattagong-link {
+  text-align-last: center;
+}
 .textArea {
   padding: 18px 0px 18px 30px;
   border: none;
