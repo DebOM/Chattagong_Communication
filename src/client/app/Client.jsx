@@ -1,3 +1,5 @@
+console.log(10);
+
 import React from 'react';
 // import { SocketProvider, socketConnect } from 'socket.io-react';
 import io from 'socket.io-client';
@@ -18,20 +20,30 @@ class ChatterBox extends React.Component {
         <input type= 'text' className='nameEntry' placeholder='Enter Your Name' onChange={(e) => this.handleChange(e)}></input>
       <button
         onClick={() => {
-          this.insideFooter = (
-            <div className='chatField'>
-              <textarea className='textArea' placeholder="Send a message…" onKeyUp={this.handleSubmit} >
-              </textarea>
-              <div className='gif'>
-              </div>
-              <div className='smiley'>
-              </div>
-              <div className='attachment'>
-            </div>
-          </div>
-          )
-          this.forceUpdate();
-        }}
+          this.socket.emit('add client to rooms', this.state.user, data => {
+            if(data){
+              this.insideFooter = (
+                <div className='chatField'>
+                  <textarea className='textArea' placeholder="Send a message…" onKeyUp={this.handleSubmit} >
+                  </textarea>
+                  <div className='gif'>
+                  </div>
+                  <div className='smiley'>
+                  </div>
+                  <div className='attachment'>
+                  </div>
+                </div>
+              )
+            }else{
+
+                alert('please type in a valid name')
+              }
+              this.forceUpdate();
+            })
+              //IF TYPE IN USER IS INVALID WE CAN TRIGER SOMETHING HERE, NOW NOTHINGS HAPPEN
+              this.forceUpdate();
+          }
+        }
       >
         Start Conversation
       </button>
@@ -59,7 +71,6 @@ class ChatterBox extends React.Component {
 }
 
   handleChange(event) {
-    console.log(event.target+ " from handleChange method ChatterBox");
      this.setState({user: event.target.value});
    }
 
