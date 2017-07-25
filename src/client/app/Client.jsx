@@ -35,13 +35,11 @@ class ChatterBox extends React.Component {
                 </div>
               )
             }else{
-
+                  //IF TYPE IN USER IS INVALID WE CAN TRIGER SOMETHING HERE, NOW NOTHINGS HAPPEN
                 alert('please type in a valid name')
               }
               this.forceUpdate();
             })
-              //IF TYPE IN USER IS INVALID WE CAN TRIGER SOMETHING HERE, NOW NOTHINGS HAPPEN
-              this.forceUpdate();
           }
         }
       >
