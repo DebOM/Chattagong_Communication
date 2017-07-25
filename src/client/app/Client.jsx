@@ -1,3 +1,4 @@
+
 import React from 'react';
 // import { SocketProvider, socketConnect } from 'socket.io-react';
 import io from 'socket.io-client';
@@ -34,9 +35,9 @@ class ChatterBox extends React.Component {
               )
             }else{
                   //IF TYPE IN USER IS INVALID WE CAN TRIGER SOMETHING HERE, NOW NOTHINGS HAPPEN
-                alert('please type in a valid name')
-              }
-              this.forceUpdate();
+              alert('please type in a valid name')
+            }
+              this.forceUpdate()
             })
           }
         }
@@ -45,7 +46,6 @@ class ChatterBox extends React.Component {
       </button>
     </div>
     )
-
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
