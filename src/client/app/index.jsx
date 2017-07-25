@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { render } from 'react-dom';
 import io from 'socket.io-client';
@@ -34,15 +35,26 @@ messageSubmit = event =>{
   }
 }
 
+// componentWillMount(){
+//   this.socket.emit('get clients');
+// }
+
 componentDidMount(){
   this.socket = io('/')
-  this.socket.on('get clients', data => {
-    this.setState({ onlineClients: [...this.state.onlineClients, data] })
+  this.socket.emit('get clients');
+  this.socket.on('clients', data => {
+    console.log("this is what i recieved form the backend ", data)
+    // console.log(data);
+    this.setState({ onlineClients: data.activeClients }, () => {
+      console.log('NUMBER OF OPEN ROOMS: ', this.state.onlineClients)
+    })
   })
+
+  // this.socket.emit('get clients');
 console.log("here are all the room sockets ", this.state.onlineClients.length)
 }
+
   render(){
-    console.log("inside render")
     const messages = this.state.messages.map((message, index) => {
     // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
     // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
