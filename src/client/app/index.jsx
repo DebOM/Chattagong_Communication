@@ -18,9 +18,16 @@ class SupportDesk extends React.Component {
       offlineClients:[],
     }
     this.messageSubmit = this.messageSubmit.bind(this);
-  }
+    this.joinRoom = this.joinRoom.bind(this);
 
-messageSubmit = event =>{
+  }
+joinRoom = value => {
+  console.log('get component was clicked!!!!')
+  console.log('get component was clicked!!!! ' + value.id)
+  this.socket.join(value.id);
+  socket.to(value.id).emit('message', 'I just met you');
+}
+messageSubmit = event => {
   const body = event.target.value
   if (event.keyCode === 13 && body) {
     const message = {
@@ -62,8 +69,8 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
   })
 
   const activeClints = this.state.onlineClients.map((client, index) => {
-    return <div className='msgFormat' key={index}>
-              <b>{client.id}: </b>{client.userName} {client.room}
+    return <div key={index}>
+              <button className="roomButton" onClick={() => this.joinRoom(client)}><span><b>{client.clientName}:</b> </span>{client.id.slice(-4)} {client.room} </button>
             </div>
   })
     return (
@@ -71,11 +78,12 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
         <div className='_windowHeader'>
           <p>Conversations</p>
           <span>with Chattagong</span>
+          <button className="_logButton">LogIn</button>
         </div>
           <div className='_windowBody'>
             <div className= "_windowLeft">
               <div className="_onlineClients">
-                <h3>Currently Online Clients</h3>
+                <h3>Currently Online Clients : Click A Client To Help</h3>
                 {activeClints}
               </div>
               <div className="_offlineClients">
@@ -87,7 +95,7 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
               <div className="_chatWindow">
                 <h3>This is the Chat window</h3>
                 <div className='chatArea'>
-                  common you!
+                  Messages display here!
                   {messages}
                 </div>
                 <textarea className='_textArea' placeholder="Send a message…" onKeyUp={this.messageSubmit}></textarea>
@@ -95,7 +103,7 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
             </div>
           </div>
         <div className="_windowFooter">
-          I am footer
+          I am the footer!
         </div>
       </div>
     )
