@@ -1,5 +1,3 @@
-console.log(10);
-
 import React from 'react';
 // import { SocketProvider, socketConnect } from 'socket.io-react';
 import io from 'socket.io-client';
