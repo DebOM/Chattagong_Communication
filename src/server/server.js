@@ -9,7 +9,6 @@ console.log('server running....ON PORT 8080');
 
 app.use(express.static(path.join(__dirname, '../client')));
 
-// let ns1 = io.of('/ns1'); // this is a custom defined namespace;
 
 let usernames = {};
 let clientsRooms = [];
