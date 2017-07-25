@@ -43,13 +43,11 @@ componentDidMount(){
   this.socket = io('/')
   this.socket.emit('get clients');
   this.socket.on('clients', data => {
-    console.log("this is what i recieved form the backend ", data)
-    // console.log(data);
     this.setState({ onlineClients: data.activeClients }, () => {
       console.log('NUMBER OF OPEN ROOMS: ', this.state.onlineClients)
     })
   })
-
+  this.socket.emit('add helpDesk to rooms');
   // this.socket.emit('get clients');
 console.log("here are all the room sockets ", this.state.onlineClients.length)
 }
