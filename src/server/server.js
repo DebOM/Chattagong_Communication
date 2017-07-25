@@ -16,7 +16,7 @@ let helpDeskRooms = [];
 
 io.on('connection', socket => { //CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
 
-  let clientRoomsData = clientsRooms.map(room => ({id: room.id})); //THIS IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED IN THE CLIENT SIDE
+  let clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username})); //THIS IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED IN THE CLIENT SIDE
 
   socket.on('add client to rooms', (client, callback) => { //THIS EVENT ADD THE SOCKET TO CLIENTROOMS IF NAME IS VALID
     if(client.length > 0){
@@ -59,13 +59,13 @@ io.on('connection', socket => { //CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
       clientsRooms = clientsRooms.filter(room => {
         return room.id !== socket.id;
       })
-      console.log("total room after removed , " + clientsRooms.length)
+      console.log("total clientsRoomsroom after removed , " + clientsRooms.length)
     }else{
       console.log(socket.id + ", this socket is disconnected")
       helpDeskRooms = helpDeskRooms.filter(room => {
         return room.id !== socket.id;
       })
-      console.log("total room after removed , " + helpDeskRooms.length)
+      console.log("total helpDeskRooms after removed , " + helpDeskRooms.length)
     }
   })
 });
