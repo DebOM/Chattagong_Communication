@@ -1,65 +1,92 @@
-
 import React from 'react';
 import { render } from 'react-dom';
 import io from 'socket.io-client';
-import Client from './index2.jsx'
-import moment from 'moment'
-
-
+import Client from './index2.jsx';
+import moment from 'moment';
 
 class SupportDesk extends React.Component {
   constructor(props){
     super(props)
-
+    console.log("inside SupportDesk Constructor, passedin props is , ", props)
     this.state = {
       messages: [],
-      user: '',
+      user: 'Steaven(Dummy)',
+      client: '',
       onlineClients:[],
       offlineClients:[],
     }
     this.messageSubmit = this.messageSubmit.bind(this);
     this.joinRoom = this.joinRoom.bind(this);
-
+    // this.getClients = this.getClients.bind(this);
+    //
+    // setInterval(() => {
+    //   console.log('inside interval')
+    //   this.getClients();
+    // }, 1000);
   }
+
 joinRoom = value => {
+  this.setState({client: value.id})
   console.log('get component was clicked!!!!')
   console.log('get component was clicked!!!! ' + value.id)
-  this.socket.join(value.id);
-  socket.to(value.id).emit('message', 'I just met you');
-}
+  this.socket.emit('join client to room', value);
+};
+
 messageSubmit = event => {
   const body = event.target.value
   if (event.keyCode === 13 && body) {
     const message = {
       body,
       from: this.state.user,
-      time: moment().format('LT'),
+      time: moment().calendar(),
       img: null,
     }
     // this.setState({ messages: [...this.state.messages, message] })
-    this.socket.emit('message', message)
+    this.socket.emit('private message', this.state.client, message)
     event.target.value = ''
   }
-}
+};
 
 // componentWillMount(){
+//   console.log("componentWillMount")
+// }
+// componentDidUpdate(){
+//   console.log("componentDidUpdate")
+//   // this.socket.emit('get clients');
+// }
+
+// componentWillUpdate(){
+//  console.log("componentWillUpdate")
+// }
+
+// componentWillUnmount() {
+//   console.log('componentWillUnmount')
+// }
+//
+// getClients() {
 //   this.socket.emit('get clients');
 // }
 
 componentDidMount(){
   this.socket = io('/')
+  this.socket.emit('add helpDesk to rooms')
   this.socket.emit('get clients');
+
   this.socket.on('clients', data => {
-    this.setState({ onlineClients: data.activeClients }, () => {
-      console.log('NUMBER OF OPEN ROOMS: ', this.state.onlineClients)
+    console.log('receive clients', data);
+    this.setState({ onlineClients: data.clients}, () => {
     })
-  })
-  this.socket.emit('add helpDesk to rooms');
-  // this.socket.emit('get clients');
+  });
+
+  this.socket.on('private message', (client, message) => {
+    this.setState({ messages: [...this.state.messages, message] })
+  });
+
 console.log("here are all the room sockets ", this.state.onlineClients.length)
 }
 
   render(){
+    console.log('inside helpDesk render')
     const messages = this.state.messages.map((message, index) => {
     // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
     // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
@@ -69,8 +96,12 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
   })
 
   const activeClints = this.state.onlineClients.map((client, index) => {
+    // console.log("clint info is ," + JSON.stringify(client))
     return <div key={index}>
-              <button className="roomButton" onClick={() => this.joinRoom(client)}><span><b>{client.clientName}:</b> </span>{client.id.slice(-4)} {client.room} </button>
+              <button className="roomButton" onClick={() =>
+                this.joinRoom(client)}>
+                <span><b>{client.clientName}:</b></span> {client.id ? client.id.slice(-4) : null} {client.room}
+              </button>
             </div>
   })
     return (
@@ -88,7 +119,7 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
               </div>
               <div className="_offlineClients">
                 <h3>Currently offline Clients</h3>
-              <Client />
+              <Client country='usa' lang='eng'/>
               </div>
             </div>
             <div className="_windowRight">

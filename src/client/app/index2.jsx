@@ -1,12 +1,11 @@
-
 import React from 'react';
 import { render } from 'react-dom';
 import ChatterBox from './Client.jsx';
 
-
 class Client extends React.Component {
   constructor (props){
     super(props);
+    console.log("inside client Constructor, passedin props is ,", props)
     this.state = {
       messeges: [],
       chatWindow: false,
@@ -14,23 +13,23 @@ class Client extends React.Component {
     this.handleMessageArea = this.handleMessageArea.bind(this);
   }
 
-handleMessageArea() {
-  this.setState({
-    chatWindow : !this.state.chatWindow,
-  })
-  console.log(this.state.chatWindow)
-};
+  handleMessageArea() {
+    this.setState({
+      chatWindow : !this.state.chatWindow,
+    })
+    console.log(this.state.chatWindow)
+  };
 
 
   render(){
     return (
       <div className='container'>
-          {this.state.chatWindow && <ChatterBox />}
+        {this.state.chatWindow && <ChatterBox />}
           <div className= 'chat-img' >
-              <img
-                onClick={() => this.handleMessageArea()}
-                style={{width: 50, height: 50}} src='../images/chat_icon.png'
-              />
+            <img
+              onClick={() => this.handleMessageArea()}
+              style={{width: 50, height: 50}} src='../images/chat_icon.png'
+            />
           </div>
         </div>
     )
