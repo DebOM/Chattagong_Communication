@@ -14,30 +14,52 @@ let usernames = {};
 let clientsRooms = [];
 let helpDeskRooms = [];
 
-io.on('connection', socket => { //CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
+//CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
+io.on('connect', socket => {
 
-  let clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username})); //THIS IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED IN THE CLIENT SIDE
-
-  socket.on('add client to rooms', (client, callback) => { //THIS EVENT ADD THE SOCKET TO CLIENTROOMS IF NAME IS VALID
+//THIS EVENT ADD THE SOCKET TO CLIENTROOMS, IF NAME IS VALID
+  socket.on('add client to rooms', (client, callback) => {
     if(client.length > 0){
       let thisSocket = socket;
       thisSocket.username = client;
-      callback(true);
+      ///JUST ADDED THIS LINE, JUST INCASE CANT JOIN ROOM THROUGH ID;
+      thisSocket.room = client+socket.id.slice(-4);
       clientsRooms.push(thisSocket);
+      clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username, room: null}));
       console.log('total number clients rooms ,' + clientsRooms.length);
-      // io.emit('clients', { activeClients: clientRoomsData })
+      io.emit('clients', { clients: clientRoomsData });
+      callback(true);
     }else{
       callback(false);
     }
   });
 
-  socket.on('add helpDesk to rooms', helpDesk => { //later when authentication is ready add user data to this socket
+//LATER WHEN AUTHENTICATION IS READY AND USER DATA TO THIS SOCKET
+  socket.on('add helpDesk to rooms', helpDesk => {
     helpDeskRooms.push(socket);
     socket.emit('helpDesk Added')
     console.log('total number helpdesk rooms ,' + helpDeskRooms.length);
-  })
+  });
 
-  socket.on('message', message => { //THIS EVENT HANDLE MESSAGE COMING IN AND OUT
+  socket.on('join client to room', data => {
+    console.log("inside join client room, id is ," + data.id)
+    socket.join(data.id);
+    // this.socket.emit('join client room', value);)
+    // socket.to(<socketid>).emit('hey', 'I just met you');
+  });
+
+//THIS EVENT HANDLE MESSAGE COMING IN AND OUT
+  socket.on('private message', (client, message) => {
+    socket.to(client).emit('private message', {
+      body: message.body,
+      from: message.from,
+      time: message.time,
+      img: null,
+    })
+  });
+
+//THIS EVENT HANDLE MESSAGE COMING IN AND OUT
+  socket.on('message', message => {
     io.emit('message', {
       body: message.body,
       from: message.from,
@@ -46,26 +68,29 @@ io.on('connection', socket => { //CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
     })
   });
 
-  socket.on('get clients', data => { //THIS EVENT MADE SPECIFICALY FOR HELPDESK TO DISPLAY ALL ACTIVE CLIENT ROOMS
-    console.log('inside get clients! total clients ,' + clientsRooms.length)
-    io.emit('clients', {
-      activeClients: clientRoomsData,
-    })
+//THIS EVENT MADE SPECIFICALY FOR HELPDESK TO DISPLAY ALL ACTIVE CLIENT ROOMS
+  socket.on('get clients', data => {
+    clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username}));
+    console.log('inside get clients! total clients ,', JSON.stringify(clientRoomsData), clientRoomsData.length)
+    //clientRoomsData IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED FOR THE CLIENT SIDE
+    io.emit('clients', { clients: clientRoomsData });   //????clientsRooms[clientsRooms.length-1]
   });
 
-  socket.on('disconnect', () => { //THIS EVENT REMOVES THE SOCKET FROM CLIENTS ROOM AS THEY LEAVE OR CLOSE CHAT WINDOW
+//THIS EVENT REMOVES THE SOCKET FROM CLIENTS ROOM AS THEY LEAVE OR CLOSES CHAT WINDOW
+  socket.on('disconnect', () => {
     if(socket.username){
-      console.log(socket.id + ", this socket is disconnected")
+      console.log(socket.id + ", this socket is disconnected from clientsRooms")
       clientsRooms = clientsRooms.filter(room => {
         return room.id !== socket.id;
       })
       console.log("total clientsRoomsroom after removed , " + clientsRooms.length)
     }else{
-      console.log(socket.id + ", this socket is disconnected")
+      console.log(socket.id + ", this socket is disconnected form helpDeskRooms")
       helpDeskRooms = helpDeskRooms.filter(room => {
         return room.id !== socket.id;
       })
       console.log("total helpDeskRooms after removed , " + helpDeskRooms.length)
     }
-  })
+  });
+
 });
