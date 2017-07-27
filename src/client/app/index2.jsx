@@ -5,7 +5,7 @@ import ChatterBox from './Client.jsx';
 class Client extends React.Component {
   constructor (props){
     super(props);
-    console.log("inside client Constructor, passedin props is ,", props)
+    // console.log("inside client Constructor, passedin props is ,", props)
     this.state = {
       messeges: [],
       chatWindow: false,

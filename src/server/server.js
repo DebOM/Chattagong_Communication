@@ -10,35 +10,53 @@ console.log('server running....ON PORT 8080');
 app.use(express.static(path.join(__dirname, '../client')));
 
 
-let usernames = {};
-let clientsRooms = [];
-let helpDeskRooms = [];
+let allActiveCLients = [];
+let helpDeskUsernames= {};
+let Rooms = [];
+let allActiveHelpDesk = [];
 
 //CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
 io.on('connect', socket => {
 
 //THIS EVENT ADD THE SOCKET TO CLIENTROOMS, IF NAME IS VALID
   socket.on('add client to rooms', (client, callback) => {
-    if(client.length > 0){
-      let thisSocket = socket;
-      thisSocket.username = client;
+    console.log('step one', client)
+    if (client.length > 0) {
+      // let thisSocket = socket;
+      let newRoom = client+'-'+socket.id.slice(-6);
+      socket.room = newRoom;
+      // thisSocket.username = client;
+      socket.clientName = client;      
       ///JUST ADDED THIS LINE, JUST INCASE CANT JOIN ROOM THROUGH ID;
-      thisSocket.room = client+socket.id.slice(-4);
-      clientsRooms.push(thisSocket);
-      clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username, room: null}));
-      console.log('total number clients rooms ,' + clientsRooms.length);
-      io.emit('clients', { clients: clientRoomsData });
+      // thisSocket.room = client+socket.id.slice(-4);
+      // clientsRooms.push(thisSocket);
+      let newClient= {clientName: client, roomId: newRoom, socketId: socket.id };
+      console.log("step two new client obj", newClient)
+      // allActiveCLients[client] = newClient;
+      allActiveCLients.push(newClient);
+      socket.join(newRoom);
+      // clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username, room: null}));
+      console.log('total number allActiveCLients ,', allActiveCLients, allActiveCLients.length);
       callback(true);
-    }else{
+      io.emit('clients', { clients: allActiveCLients });
+    } else {
       callback(false);
     }
   });
 
+  //THIS EVENT MADE SPECIFICALY FOR HELPDESK TO DISPLAY ALL ACTIVE CLIENT ROOMS
+  socket.on('get clients', data => {
+    // clientRoomsData = allActiveCLients.map(room => ({id: room.id, clientName: room.username}));
+      console.log('total number allActiveCLients ,', allActiveCLients, allActiveCLients.length);    
+    //clientRoomsData IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED FOR THE CLIENT SIDE
+    io.emit('clients', { clients: allActiveCLients });   //????clientsRooms[clientsRooms.length-1]
+  });
+
 //LATER WHEN AUTHENTICATION IS READY AND USER DATA TO THIS SOCKET
   socket.on('add helpDesk to rooms', helpDesk => {
-    helpDeskRooms.push(socket);
+    allActiveHelpDesk.push(socket);
     socket.emit('helpDesk Added')
-    console.log('total number helpdesk rooms ,' + helpDeskRooms.length);
+    console.log('total number helpdesk rooms ,' + allActiveHelpDesk.length);
   });
 
   socket.on('join client to room', data => {
@@ -68,28 +86,20 @@ io.on('connect', socket => {
     })
   });
 
-//THIS EVENT MADE SPECIFICALY FOR HELPDESK TO DISPLAY ALL ACTIVE CLIENT ROOMS
-  socket.on('get clients', data => {
-    clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username}));
-    console.log('inside get clients! total clients ,', JSON.stringify(clientRoomsData), clientRoomsData.length)
-    //clientRoomsData IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED FOR THE CLIENT SIDE
-    io.emit('clients', { clients: clientRoomsData });   //????clientsRooms[clientsRooms.length-1]
-  });
-
 //THIS EVENT REMOVES THE SOCKET FROM CLIENTS ROOM AS THEY LEAVE OR CLOSES CHAT WINDOW
   socket.on('disconnect', () => {
-    if(socket.username){
-      console.log(socket.id + ", this socket is disconnected from clientsRooms")
-      clientsRooms = clientsRooms.filter(room => {
+    if (socket.clientName) {
+      console.log(socket.id + ", this socket is disconnected from allActiveCLients")
+      allActiveCLients = allActiveCLients.filter(client => {
+        return client.clientName !== socket.clientName;
+      })
+      console.log("total clientsRoomsroom after removed , " + allActiveCLients.length)
+    } else {
+      console.log(socket.id + ", this socket is disconnected form allActiveHelpDesk")
+      allActiveHelpDesk = allActiveHelpDesk.filter(room => {
         return room.id !== socket.id;
       })
-      console.log("total clientsRoomsroom after removed , " + clientsRooms.length)
-    }else{
-      console.log(socket.id + ", this socket is disconnected form helpDeskRooms")
-      helpDeskRooms = helpDeskRooms.filter(room => {
-        return room.id !== socket.id;
-      })
-      console.log("total helpDeskRooms after removed , " + helpDeskRooms.length)
+      console.log("total allActiveHelpDesk after removed , " + allActiveHelpDesk.length)
     }
   });
 
