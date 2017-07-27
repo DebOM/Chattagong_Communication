@@ -54,16 +54,24 @@ io.on('connect', socket => {
 
 //LATER WHEN AUTHENTICATION IS READY AND USER DATA TO THIS SOCKET
   socket.on('add helpDesk to rooms', helpDesk => {
+    // console.log('helooooooooooooo', socket)
     allActiveHelpDesk.push(socket);
     socket.emit('helpDesk Added')
     console.log('total number helpdesk rooms ,' + allActiveHelpDesk.length);
   });
 
-  socket.on('join client to room', data => {
-    console.log("inside join client room, id is ," + data.id)
-    socket.join(data.id);
-    // this.socket.emit('join client room', value);)
-    // socket.to(<socketid>).emit('hey', 'I just met you');
+  socket.on('join helpDesk to room', (data, callback) => {  
+    let roomToJoin = data.roomId;
+    socket.join(roomToJoin);
+    socket.room = roomToJoin;
+    let message = {
+      body: 'Please Ask your Question, Someone is here to Help!',
+      from: "Admin",
+      time: null,
+      img: null,
+    }
+    socket.broadcast.in(socket.room).emit('message', message);
+    callback(true);
   });
 
 //THIS EVENT HANDLE MESSAGE COMING IN AND OUT
@@ -78,7 +86,7 @@ io.on('connect', socket => {
 
 //THIS EVENT HANDLE MESSAGE COMING IN AND OUT
   socket.on('message', message => {
-    io.emit('message', {
+    io.in(socket.room).emit('message', {
       body: message.body,
       from: message.from,
       time: message.time,
