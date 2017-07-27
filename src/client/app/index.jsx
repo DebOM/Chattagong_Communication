@@ -7,7 +7,7 @@ import moment from 'moment';
 class SupportDesk extends React.Component {
   constructor(props){
     super(props)
-    console.log("inside SupportDesk Constructor, passedin props is , ", props)
+    // console.log("inside SupportDesk Constructor, passedin props is , ", props)
     this.state = {
       messages: [],
       user: 'Steaven(Dummy)',
@@ -17,19 +17,18 @@ class SupportDesk extends React.Component {
     }
     this.messageSubmit = this.messageSubmit.bind(this);
     this.joinRoom = this.joinRoom.bind(this);
-    // this.getClients = this.getClients.bind(this);
-    //
-    // setInterval(() => {
-    //   console.log('inside interval')
-    //   this.getClients();
-    // }, 1000);
+
   }
 
-joinRoom = value => {
-  this.setState({client: value.id})
-  console.log('get component was clicked!!!!')
-  console.log('get component was clicked!!!! ' + value.id)
-  this.socket.emit('join client to room', value);
+joinRoom = client => {
+  console.log('inside joinRoom function!!!!', client)
+  this.setState({client: client.clientName})
+  this.socket.emit('join helpDesk to room', client, data => {
+    if(data){
+      let message = {body: 'You are Now connected!', from: "Admin", time: null, img: null}
+    this.setState({ messages: [...this.state.messages, message] })      
+    }
+  });
 };
 
 messageSubmit = event => {
@@ -41,8 +40,9 @@ messageSubmit = event => {
       time: moment().calendar(),
       img: null,
     }
-    // this.setState({ messages: [...this.state.messages, message] })
-    this.socket.emit('private message', this.state.client, message)
+    this.socket.emit('message', message);
+    console.log("inside submit message ", message)
+    // this.socket.emit('private message', this.state.client, message)
     event.target.value = ''
   }
 };
@@ -73,16 +73,19 @@ componentDidMount(){
   this.socket.emit('get clients');
 
   this.socket.on('clients', data => {
-    console.log('receive clients', data);
+    console.log('receive clients', data.clients);
     this.setState({ onlineClients: data.clients}, () => {
+      console.log("here are all the room sockets ", this.state.onlineClients.length);
     })
   });
+  
+  this.socket.on('message', message => {
+    this.setState({ messages: [...this.state.messages, message] })
+  })
 
   this.socket.on('private message', (client, message) => {
     this.setState({ messages: [...this.state.messages, message] })
   });
-
-console.log("here are all the room sockets ", this.state.onlineClients.length)
 }
 
   render(){
@@ -95,12 +98,12 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
             </div>
   })
 
-  const activeClints = this.state.onlineClients.map((client, index) => {
+  const activeClients = this.state.onlineClients.map((client, index) => {
     // console.log("clint info is ," + JSON.stringify(client))
     return <div key={index}>
               <button className="roomButton" onClick={() =>
                 this.joinRoom(client)}>
-                <span><b>{client.clientName}:</b></span> {client.id ? client.id.slice(-4) : null} {client.room}
+                 <span><b>{client.clientName}:</b></span> {client.roomId ? client.roomId.slice(-4) : '????'}
               </button>
             </div>
   })
@@ -114,11 +117,11 @@ console.log("here are all the room sockets ", this.state.onlineClients.length)
           <div className='_windowBody'>
             <div className= "_windowLeft">
               <div className="_onlineClients">
-                <h3>Currently Online Clients : Click A Client To Help</h3>
-                {activeClints}
+                <h3>Clients currently need help : click a Client To Help</h3>
+                {activeClients}
               </div>
               <div className="_offlineClients">
-                <h3>Currently offline Clients</h3>
+                <h3>Clients currently in conversation</h3>
               <Client country='usa' lang='eng'/>
               </div>
             </div>

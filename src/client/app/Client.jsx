@@ -6,7 +6,7 @@ import moment from 'moment';
 class ChatterBox extends React.Component {
   constructor(props) {
     super(props);
-    console.log("inside ChatterBox Constructor, passedin props is , ", props)
+    // console.log("inside ChatterBox Constructor, passedin props is , ", props)
     this.state = {
       messages: [],
       user: '',
@@ -33,7 +33,7 @@ class ChatterBox extends React.Component {
                 )
               }else{
                 //IF TYPE IN USERNAME IS INVALID WE CAN TRIGER SOMETHING HERE, NOW ONLY ALERTS
-                alert('please type in a valid name')
+                alert('please type in valid name')
               }
                 this.forceUpdate()
               })
