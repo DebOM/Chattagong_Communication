@@ -76,7 +76,10 @@ body {
   text-align: center;
 }
 .chatArea {
+  height: 464px;
   min-height: 464px;
+  max-height: 464px;
+  overflow-y: scroll;
 }
 
 .roomButton {
@@ -121,12 +124,15 @@ body {
 
 ._textArea {
   padding: 18px 0px 18px 30px;
-  /*border: none;*/
+   border: none; 
+  border-top: 5px;
   width: 95%;
   font-size: 15px;
   color: rgb(86, 88, 103);
   background-color: rgb(244, 247, 249);
   margin-right: 5px;
+  border-top-width: medium;
+  border-top-style: dotted;
   /*height: 55px;*/
 }
 
@@ -160,6 +166,17 @@ body {
 
 .msgFormat {
   padding: 10px 0 10px 0;
+  /* float: right; */
+  /* align-content: right; */
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.SupportDeskmsgFormat {
+  padding: 10px 0 10px 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-content: left; */
 }
 
 .container {
