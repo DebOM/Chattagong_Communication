@@ -9,11 +9,11 @@ class SupportDesk extends React.Component {
     super(props)
     // console.log("inside SupportDesk Constructor, passedin props is , ", props)
     this.state = {
-      messages: [],
+      messages: JSON.parse(localStorage.getItem('messages') || '[]'),
       user: 'Steaven(Dummy)',
       client: '',
-      onlineClients:[],
-      offlineClients:[],
+      onlineClients:JSON.parse(localStorage.getItem('onlineClients') || '[]'),
+      offlineClients:JSON.parse(localStorage.getItem('offlineClients') || '[]'),
     }
     this.messageSubmit = this.messageSubmit.bind(this);
     this.joinRoom = this.joinRoom.bind(this);
@@ -22,7 +22,8 @@ class SupportDesk extends React.Component {
 
 joinRoom = client => {
   console.log('inside joinRoom function!!!!', client)
-  this.setState({client: client.clientName})
+  this.setState({client: client.clientName}) //IF DATA PERSISTENCE IS UNNECCESARY, UNCOMMENT THIS, COMMENTOUT NEXT LINE
+  // localStorage.setItem('ticker', JSON.stringify(this.state));
   this.socket.emit('join helpDesk to room', client, data => {
     if(data){
       let message = {body: 'You are Now connected!', from: "Admin", time: null, img: null}
@@ -41,8 +42,6 @@ messageSubmit = event => {
       img: null,
     }
     this.socket.emit('message', message);
-    console.log("inside submit message ", message)
-    // this.socket.emit('private message', this.state.client, message)
     event.target.value = ''
   }
 };
@@ -93,13 +92,12 @@ componentDidMount(){
     const messages = this.state.messages.map((message, index) => {
     // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
     // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
-    return <div className='msgFormat' key={index}>
+    return <div className='SupportDeskmsgFormat' key={index}>
               <b>{message.from}: </b>{message.body} {message.time} {message.img}
             </div>
   })
 
   const activeClients = this.state.onlineClients.map((client, index) => {
-    // console.log("clint info is ," + JSON.stringify(client))
     return <div key={index}>
               <button className="roomButton" onClick={() =>
                 this.joinRoom(client)}>
@@ -122,7 +120,7 @@ componentDidMount(){
               </div>
               <div className="_offlineClients">
                 <h3>Clients currently in conversation</h3>
-              <Client country='usa' lang='eng'/>
+               <Client /> 
               </div>
             </div>
             <div className="_windowRight">
