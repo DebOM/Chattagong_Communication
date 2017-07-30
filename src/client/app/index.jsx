@@ -134,7 +134,15 @@ componentDidMount(){
                 <div className='chatArea'>
                   {messages}
                 </div>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTopWidth: 'medium', borderTopStyle: 'dotted'}}>
                 <textarea className='_textArea' placeholder="Send a message…" onKeyUp={this.messageSubmit}></textarea>
+                  <div className='gif'>
+                  </div>
+                  <div className='smiley'>
+                  </div>
+                  <div className='attachment'>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

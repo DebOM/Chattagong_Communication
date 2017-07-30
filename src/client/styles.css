@@ -135,9 +135,6 @@ body {
   color: rgb(86, 88, 103);
   background-color: rgb(244, 247, 249);
   margin-right: 5px;
-  border-top-width: medium;
-  border-top-style: dotted;
-  /*height: 55px;*/
 }
 
 ._windowFooter {
