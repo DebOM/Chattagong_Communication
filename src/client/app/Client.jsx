@@ -17,8 +17,8 @@ class ChatterBox extends React.Component {
         <input type= 'text' className='nameEntry' placeholder='Enter Your Name...' onKeyUp={(e) => this.handleChange(e)}></input>
         <button
           onClick={() => {
-            this.socket.emit('add client to rooms', this.state.user, data => {
-              if(data){
+            this.socket.emit('add client to rooms', this.state.user, callback => {
+              if(callback){
                 this.insideFooter = (
                   <div className='chatField'>
                     <textarea className='textArea' placeholder="Send a message…" onKeyUp={this.handleSubmit} >

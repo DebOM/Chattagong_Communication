@@ -7,7 +7,6 @@ import moment from 'moment';
 class SupportDesk extends React.Component {
   constructor(props){
     super(props)
-    // console.log("inside SupportDesk Constructor, passedin props is , ", props)
     this.state = {
       messages: JSON.parse(localStorage.getItem('messages') || '[]'),
       user: 'Steaven(Dummy)',
@@ -24,10 +23,14 @@ joinRoom = client => {
   this.setState({client: client.clientName}) //IF DATA PERSISTENCE IS UNNECCESARY, UNCOMMENT THIS, COMMENTOUT NEXT LINE
   // localStorage.setItem('client', JSON.stringify(this.state));
   // localStorage[client] = client; 
+
   this.socket.emit('join helpDesk to room', client, data => {
     if(data){
+      this.setState({messages: JSON.parse(localStorage.getItem('messages') || '[]')});
       let message = {body: 'You are Now connected!', from: "Admin", time: null, img: null}
-    this.setState({ messages: [...this.state.messages, message] })      
+      this.setState({ messages: [...this.state.messages, message] })      
+    }else{
+      alert('Failed to connect to this client!!');
     }
   });
 };
@@ -125,7 +128,7 @@ componentDidMount(){
               </div>
               <div className="_offlineClients">
                 <h3>Clients currently in conversation</h3>
-               <Client /> 
+               {/* <Client />  */}
               </div>
             </div>
             <div className="_windowRight">
@@ -134,7 +137,15 @@ componentDidMount(){
                 <div className='chatArea'>
                   {messages}
                 </div>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTopWidth: 'medium', borderTopStyle: 'dotted'}}>
                 <textarea className='_textArea' placeholder="Send a message…" onKeyUp={this.messageSubmit}></textarea>
+                  <div className='gif'>
+                  </div>
+                  <div className='smiley'>
+                  </div>
+                  <div className='attachment'>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

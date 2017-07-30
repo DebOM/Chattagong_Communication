@@ -135,9 +135,6 @@ body {
   color: rgb(86, 88, 103);
   background-color: rgb(244, 247, 249);
   margin-right: 5px;
-  border-top-width: medium;
-  border-top-style: dotted;
-  /*height: 55px;*/
 }
 
 ._windowFooter {
@@ -169,7 +166,7 @@ body {
 
 .msgFormat {
   /* display: block; */
-  margin-left: 300px;
+  margin-left: 150px;
   padding: 17px 20px 10px 10px;
   border-radius: 6px;
   position: relative;

@@ -36,5 +36,5 @@ class Client extends React.Component {
 }
 
 // injectTapEventPlugin();
-// render(<Client />, document.getElementById('client'));
-export default Client;
+render(<Client />, document.getElementById('client'));
+// export default Client;
