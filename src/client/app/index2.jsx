@@ -17,7 +17,6 @@ class Client extends React.Component {
     this.setState({
       chatWindow : !this.state.chatWindow,
     })
-    console.log(this.state.chatWindow)
   };
 
 
@@ -26,10 +25,10 @@ class Client extends React.Component {
       <div className='container'>
         {this.state.chatWindow && <ChatterBox />}
           <div className= 'chat-img' >
-            <img
-              onClick={() => this.handleMessageArea()}
-              style={{width: 50, height: 50}} src='../images/chat_icon.png'
-            />
+            <button class="button" className='tempButton' onClick={() => this.handleMessageArea()}>
+              {this.state.chatWindow ? <img style={{width: 30, height: 30}} src='../images/msg_OFF.png'></img> : 
+              <img style={{width: 50, height: 50}} src='../images/msg_ON.png'></img>}
+            </button>
           </div>
         </div>
     )

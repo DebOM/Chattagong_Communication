@@ -1,6 +1,7 @@
 # Dependency directories
 node_modules
 jspm_packages
-
+.vscode
+.DS_Store
 # Webpack bundle
 src/client/public/bundle.js

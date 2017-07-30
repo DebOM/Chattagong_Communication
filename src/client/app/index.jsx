@@ -17,13 +17,13 @@ class SupportDesk extends React.Component {
     }
     this.messageSubmit = this.messageSubmit.bind(this);
     this.joinRoom = this.joinRoom.bind(this);
-
   }
 
 joinRoom = client => {
   console.log('inside joinRoom function!!!!', client)
   this.setState({client: client.clientName}) //IF DATA PERSISTENCE IS UNNECCESARY, UNCOMMENT THIS, COMMENTOUT NEXT LINE
-  // localStorage.setItem('ticker', JSON.stringify(this.state));
+  // localStorage.setItem('client', JSON.stringify(this.state));
+  // localStorage[client] = client; 
   this.socket.emit('join helpDesk to room', client, data => {
     if(data){
       let message = {body: 'You are Now connected!', from: "Admin", time: null, img: null}
@@ -92,7 +92,11 @@ componentDidMount(){
     const messages = this.state.messages.map((message, index) => {
     // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
     // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
-    return <div className='SupportDeskmsgFormat' key={index}>
+    return message.from === this.state.user ? <div className='SupportDeskmsgFormat' key={index}>
+              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+            </div> : message.from === 'Admin' ? <div className='AdminMsgFormat' key={index}>
+              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+            </div> : <div className='msgFormat' key={index}>
               <b>{message.from}: </b>{message.body} {message.time} {message.img}
             </div>
   })
@@ -127,7 +131,6 @@ componentDidMount(){
               <div className="_chatWindow">
                 <h3>This is the Chat window</h3>
                 <div className='chatArea'>
-                  Messages display here!
                   {messages}
                 </div>
                 <textarea className='_textArea' placeholder="Send a message…" onKeyUp={this.messageSubmit}></textarea>
@@ -135,12 +138,11 @@ componentDidMount(){
             </div>
           </div>
         <div className="_windowFooter">
-          I am the footer!
+          Copyright © 2017-2020 by Debasish Mozumder. All rights reserved.
         </div>
       </div>
     )
   }
-
 }
 
 render(<SupportDesk />, document.getElementById('support'));

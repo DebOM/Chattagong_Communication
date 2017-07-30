@@ -100,9 +100,13 @@ class ChatterBox extends React.Component {
     const messages = this.state.messages.map((message, index) => {
     // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
     // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
-      return <div className='msgFormat' key={index}>
-                <b>{message.from}: </b>{message.body} {message.time} {message.img}
-             </div>
+      return message.from === 'Admin'  ? <div className='AdminMsgFormat' key={index}>
+              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+            </div> : message.from === this.state.user ? <div className='SupportDeskmsgFormat' key={index}>
+              <b>{message.from}: </b>{message.body} <span>{message.time}</span> {message.img}
+            </div> : <div className='msgFormat' key={index}>
+              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+            </div>
     });
     return (
       <div className='window'>
@@ -120,7 +124,6 @@ class ChatterBox extends React.Component {
           </div>
 
           <div className='window-body-right'>
-            <span>3 weeks ago</span>
           </div>
         </div>
         <div className='chattagong-link'>
