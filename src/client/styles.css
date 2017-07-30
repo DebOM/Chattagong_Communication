@@ -11,9 +11,6 @@ body {
   border: none;
   border-radius: 50%;
   background-color: #1568c0;
-  /* color: #FFFFFF; */
-  /* text-align: center; */
-  /* font-size: 28px; */
   padding: 20px;
 }
 ._windowHeader {
@@ -185,7 +182,8 @@ body {
 }
 
 .SupportDeskmsgFormat {
-  margin-right: 300px;
+  margin-right: 150px;
+  margin-left: 10px;
   padding: 10px 20px 10px 10px;
   border-radius: 6px;
   position: relative;
@@ -212,6 +210,8 @@ body {
   background-color: blue;
   min-width: 370px;
   min-height: 515px;
+  max-width: 370px;
+  max-height: 515px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
