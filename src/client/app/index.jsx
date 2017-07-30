@@ -88,16 +88,17 @@ componentDidMount(){
 }
 
   render(){
+    //MUST ADD ON HOVER TIME TO EACH TEXT MESSAGE
     console.log('inside helpDesk render')
     const messages = this.state.messages.map((message, index) => {
     // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
     // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
     return message.from === this.state.user ? <div className='SupportDeskmsgFormat' key={index}>
-              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+               <b>{message.from}: </b>{message.body} {/*message.time*/}  
             </div> : message.from === 'Admin' ? <div className='AdminMsgFormat' key={index}>
-              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+               <b>{message.from}: </b>{message.body} {/*message.time*/}  
             </div> : <div className='msgFormat' key={index}>
-              <b>{message.from}: </b>{message.body} {message.time} {message.img}
+                <b>{message.from}: </b>{message.body} {/*message.time*/}  
             </div>
   })
 

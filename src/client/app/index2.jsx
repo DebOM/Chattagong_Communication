@@ -25,9 +25,9 @@ class Client extends React.Component {
       <div className='container'>
         {this.state.chatWindow && <ChatterBox />}
           <div className= 'chat-img' >
-            <button class="button" className='tempButton' onClick={() => this.handleMessageArea()}>
-              {this.state.chatWindow ? <img style={{width: 30, height: 30}} src='../images/msg_OFF.png'></img> : 
-              <img style={{width: 50, height: 50}} src='../images/msg_ON.png'></img>}
+            <button style={{width: 60, height: 60, backgroundColor: '#1568c0', border: 'none', borderRadius: 50}} onClick={() => this.handleMessageArea()}>
+              {this.state.chatWindow ? <h2 style={{fontSize: 25, color: '#f8f8f8'}}>X</h2> :
+              <img style={{width: 60, height: 60}} src='../images/msg_ON.png'/> }
             </button>
           </div>
         </div>
