@@ -1,7 +1,7 @@
 {
   "name": "Chattagong",
   "version": "1.0.0",
-  "description": "chat messaging web widget",
+  "description": "A chat messaging intercome widget (npm module) for web applications to integret",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
