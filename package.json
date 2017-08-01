@@ -1,5 +1,5 @@
 {
-  "name": "intcom_communication",
+  "name": "Chattagong_communication",
   "version": "1.0.0",
   "description": "chat messaging web widget",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/DebOM/Project-Chittagong.git"
   },
   "author": "DevDeb",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/DebOM/Project-Chittagong/issues"
   },
