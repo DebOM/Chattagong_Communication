@@ -11,18 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DebOM/Project-Chittagong.git"
+    "url": "git+https://github.com/DebOM/Chattagong_Communication.git"
   },
-  "keyword" : [
+  "keywords" : [
     "chatIntercome", "chat", "chatWidget", "intercome", 
     "messagingAPp", "message company and client"
   ],
-  "author": "DevDeb",
+  "author": "Debasish Mozumder",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DebOM/Project-Chittagong/issues"
+    "url": "https://github.com/DebOM/Chattagong_Communication/issues"
   },
-  "homepage": "https://github.com/DebOM/Project-Chittagong#readme",
+  "homepage": "https://github.com/DebOM/Chattagong_Communication#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
