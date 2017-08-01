@@ -5,7 +5,6 @@ import ChatterBox from './Client.jsx';
 class Client extends React.Component {
   constructor (props){
     super(props);
-    // console.log("inside client Constructor, passedin props is ,", props)
     this.state = {
       messeges: [],
       chatWindow: false,
@@ -25,8 +24,8 @@ class Client extends React.Component {
       <div className='container'>
         {this.state.chatWindow && <ChatterBox />}
           <div className= 'chat-img' >
-            <button style={{width: 60, height: 60, backgroundColor: '#1568c0', border: 'none', borderRadius: 50}} onClick={() => this.handleMessageArea()}>
-              {this.state.chatWindow ? <h2 style={{fontSize: 25, color: '#f8f8f8'}}>X</h2> :
+            <button style={{outline: 'none', padding: 0, width: 60, height: 60, backgroundColor: '#1568c0', border: 'none', borderRadius: 50}} onClick={() => this.handleMessageArea()}>
+              {this.state.chatWindow ? <h2 style={{margin: 0, fontSize: 27, color: '#f8f8f8'}}>X</h2> :
               <img style={{width: 60, height: 60}} src='../images/msg_ON.png'/> }
             </button>
           </div>
@@ -35,6 +34,5 @@ class Client extends React.Component {
   }
 }
 
-// injectTapEventPlugin();
 render(<Client />, document.getElementById('client'));
 // export default Client;
