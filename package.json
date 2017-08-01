@@ -13,6 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/DebOM/Project-Chittagong.git"
   },
+  "keyword" : [
+    "chatIntercome", "chat", "chatWidget", "intercome", 
+    "messagingAPp", "message company and client"
+  ],
   "author": "DevDeb",
   "license": "MIT",
   "bugs": {
