@@ -56,16 +56,20 @@ body {
   width: 40%;
 }
 
-._onlineClients {
+._inQueuedClients {
   min-height: 275px;
+  max-height: 275px;
+  overflow-y: scroll;    
   text-align: center;
-  border-bottom-style: solid;
+  border-bottom-style: solid; 
   border-bottom-width: 2px;
   border-color: #1565C0;
 }
 
-._offlineClients {
+._dequeuedClients {
   min-height: 275px;
+  max-height: 275px;
+  overflow-y: scroll;    
   text-align: center;
 }
 

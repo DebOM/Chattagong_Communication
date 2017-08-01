@@ -9,7 +9,6 @@ console.log('server running....ON PORT 8080');
 
 app.use(express.static(path.join(__dirname, '../client')));
 
-
 let allActiveCLients = [];
 let helpDeskUsernames= {};
 let Rooms = [];

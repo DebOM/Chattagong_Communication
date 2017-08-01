@@ -1,12 +1,10 @@
 import React from 'react';
-// import { SocketProvider, socketConnect } from 'socket.io-react';
 import io from 'socket.io-client';
 import moment from 'moment';
 
 class ChatterBox extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("inside ChatterBox Constructor, passedin props is , ", props)
     this.state = {
       messages: [],
       user: '',
@@ -58,22 +56,15 @@ class ChatterBox extends React.Component {
         time: moment().calendar(),
         img: null,
       }
-      // this.setState({ messages: [...this.state.messages, message] })
       this.socket.emit('message', message);
       event.target.value = '';
     }
 }
 
   handleChange(event) {
-    // if(event.key === 'Enter'){
     this.setState({user: event.target.value});
-    // }
   }
 
-  // shouldComponentUpdate() {
-  //   console.log('componentWillMount')
-  //   return true;
-  // }
 
   componentDidMount () {
     console.log('inside componentDidMount on client component')
@@ -83,24 +74,11 @@ class ChatterBox extends React.Component {
     })
   }
 
-// componentDidUpdate(){
-//   console.log("componentDidUpdate")
-// }
-
-// componentWillUpdate(){
-//  console.log("componentWillUpdate")
-// }
-
-// componentWillUnmount() {
-//   console.log('componentWillUnmount')
-// }
 
   render(){
      //MUST ADD ON HOVER TIME TO EACH TEXT MESSAGE
     console.log('inside Client render')
     const messages = this.state.messages.map((message, index) => {
-    // const temp =  'http://dummyimage.com/250x250/000/fff&text=' + message.from.charAt(0).toUpperCase()
-    // const img = message.img ? <img src={message.img} width='200px' /> : <img src={temp} width='200px' />
       return message.from === 'Admin'  ? <div className='AdminMsgFormat' key={index}>
               <b>{message.from}: </b> {message.body} {/*message.time*/}
             </div> : message.from === this.state.user ? <div className='SupportDeskmsgFormat' key={index}>
@@ -117,10 +95,8 @@ class ChatterBox extends React.Component {
         </div>
         <div className='window-body'>
           <div className='window-body-left'>
-            {/* <img src='http://ofad.org/files/daily-photo/not-so-recent-and-random-portraits_0.jpg' /> */}
           </div>
           <div className='window-body-mid'>
-            {/* <p>{}</p> */}
             <span>{messages}</span>
           </div>
 
