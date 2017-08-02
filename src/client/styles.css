@@ -90,29 +90,45 @@ body {
   overflow-y: scroll;
 }
 
-.roomButton {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #f4511e;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 10px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
+.roomButton1 {
+    display: inline-block;
+    /* border-radius: 4px; */
+    background-color: rgb(26, 86, 128);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16PX;
+    padding: 8px;
+    width: 350px;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 5px;
 }
 
-.roomButton span {
+.roomButton2 {
+    display: inline-block;
+    /* border-radius: 4px; */
+    background-color: rgb(26, 57, 128, 0.53);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16PX;
+    padding: 8px;
+    width: 350px;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 5px;
+}
+.roomButton1 span,
+.roomButton2 span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.roomButton span:after {
+.roomButton1 span:after,
+.roomButton2 span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -121,11 +137,13 @@ body {
   transition: 0.5s;
 }
 
-.roomButton:hover span {
+.roomButton1:hover span ,
+.roomButton2:hover span {
   padding-right: 25px;
 }
 
-.roomButton:hover span:after {
+.roomButton1:hover span:after,
+.roomButton2:hover span:after {
   opacity: 1;
   right: 0;
 }
