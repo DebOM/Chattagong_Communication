@@ -102,7 +102,7 @@ componentDidMount(){
   //the following clientsInQueue are clients awaiting for help from support team
   const clientsInQueue = this.state.clientsInQueue.map((client, index) => {
     return <div key={index}>
-              <button className="roomButton" onClick={() =>
+              <button className="roomButton1" onClick={() =>
                 this.joinRoom(client)}>
                  <span><b>{client.clientName}:</b></span> {client.roomId ? client.roomId.slice(-4) : '????'}
               </button>
@@ -110,9 +110,9 @@ componentDidMount(){
   })
 
    //the following clientsInCoversation are clients currently having active conversations
-  const clientsDequeued = this.state.clientsInCoversation.map((client, index) => {
+  const clientsInCoversation = this.state.clientsInCoversation.map((client, index) => {
     return <div key={index}>
-              <button className="roomButton">
+              <button className="roomButton2">
                  <span><b>{client.clientName}:</b></span> {client.roomId ? client.roomId.slice(-4) : '????'}
               </button>
             </div>
@@ -133,7 +133,7 @@ componentDidMount(){
               </div>
               <div className="_clientsInCoversation">
                 <h3>Clients currently in conversation</h3>
-               {clientsDequeued}
+                {clientsInCoversation}
               </div>
             </div>
             <div className="_windowRight">
