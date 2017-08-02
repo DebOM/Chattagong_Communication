@@ -9,10 +9,12 @@ console.log('server running....ON PORT 8080');
 
 app.use(express.static(path.join(__dirname, '../client')));
 
-let allActiveCLients = [];
+let clientsInQueue = [];
+let clientsInCoversation = [];
 let helpDeskUsernames= {};
 let Rooms = [];
 let allActiveHelpDesk = [];
+
 
 //CONNECTION ESTABLISHED ON DEFAULT NAMESPACE;
 io.on('connect', socket => {
@@ -31,24 +33,25 @@ io.on('connect', socket => {
       // clientsRooms.push(thisSocket);
       let newClient= {clientName: client, roomId: newRoom, socketId: socket.id };
       console.log("step two new client obj", newClient)
-      // allActiveCLients[client] = newClient;
-      allActiveCLients.push(newClient);
+      // clientsInQueue[client] = newClient;
+      clientsInQueue.push(newClient);
       socket.join(newRoom);
       // clientRoomsData = clientsRooms.map(room => ({id: room.id, clientName: room.username, room: null}));
-      console.log('total number allActiveCLients ,', allActiveCLients, allActiveCLients.length);
+      console.log('total number clientsInQueue ,', clientsInQueue, clientsInQueue.length);
       callback(true);
-      io.emit('clients', { clients: allActiveCLients });
+      io.emit('clientsInQueue', { clients: clientsInQueue });
     } else {
       callback(false);
     }
   });
 
-  //THIS EVENT MADE SPECIFICALY FOR HELPDESK TO DISPLAY ALL ACTIVE CLIENT ROOMS
+  //THIS EVENT MADE SPECIFICALY FOR HELPDESK TO DISPLAY ALL CLIENT ROOMS IN QUEUE AND IN CONVERSATION
   socket.on('get clients', data => {
-    // clientRoomsData = allActiveCLients.map(room => ({id: room.id, clientName: room.username}));
-      console.log('total number allActiveCLients ,', allActiveCLients, allActiveCLients.length);    
+    // clientRoomsData = clientsInQueue.map(room => ({id: room.id, clientName: room.username}));
+      console.log('total number clientsInQueue ,', clientsInQueue, clientsInQueue.length);    
     //clientRoomsData IS FOR helpDesk TO USE, ADD PROPERTY TO THIS OBJECT AS NEEDED FOR THE CLIENT SIDE
-    io.emit('clients', { clients: allActiveCLients });   //????clientsRooms[clientsRooms.length-1]
+      io.emit('clientsInQueue', { clients: clientsInQueue });    //????clientsRooms[clientsRooms.length-1]
+      io.emit('clientsInCoversation', { clients: clientsInCoversation });
   });
 
 //LATER WHEN AUTHENTICATION IS READY AND USER DATA TO THIS SOCKET
@@ -60,16 +63,23 @@ io.on('connect', socket => {
   });
 
   socket.on('join helpDesk to room', (data, callback) => {  
+    // this.socket.emit('update queue State', client);
+    // this.socket.emit('update inConvers State', client);
     let roomToJoin = data.roomId;
-    socket.join(roomToJoin);
     socket.room = roomToJoin;
+    socket.join(roomToJoin);
     let message = {
-      body: 'Please Ask your Question, Someone is here to Help!',
+      body: 'Please Ask your Question, Someone is here to Help!', //HERE WE CAN ALSO SEND ALONG THE HELPDESK CLIENT INFO
       from: "Admin",
       time: null,
       img: null,
     }
-    socket.broadcast.in(socket.room).emit('message', message);
+    
+    clientsInQueue = clientsInQueue.filter( inQueue => inQueue.socketId !== data.socketId);
+    clientsInCoversation.push(data)
+    io.emit('clientsInQueue', { clients: clientsInQueue });    
+    io.emit('clientsInCoversation', { clients: clientsInCoversation });
+    socket.broadcast.in(socket.room).emit('message', message);    
     callback(true);
   });
 
@@ -96,11 +106,16 @@ io.on('connect', socket => {
 //THIS EVENT REMOVES THE SOCKET FROM CLIENTS ROOM AS THEY LEAVE OR CLOSES CHAT WINDOW
   socket.on('disconnect', () => {
     if (socket.clientName) {
-      console.log(socket.id + ", this socket is disconnected from allActiveCLients")
-      allActiveCLients = allActiveCLients.filter(client => {
+      console.log(socket.id + ", this socket is disconnected from clientsInQueue")
+      clientsInQueue = clientsInQueue.filter(client => {
         return client.clientName !== socket.clientName;
-      })
-      console.log("total clientsRoomsroom after removed , " + allActiveCLients.length)
+      });
+      clientsInCoversation = clientsInCoversation.filter(client => {
+        return client.clientName !== socket.clientName;
+      });
+
+      console.log("total clients in clientsInQueue after removed , " + clientsInQueue.length)
+      console.log("total clients in clientsInCoversation after removed , " + clientsInQueue.length)
     } else {
       console.log(socket.id + ", this socket is disconnected form allActiveHelpDesk")
       allActiveHelpDesk = allActiveHelpDesk.filter(room => {
