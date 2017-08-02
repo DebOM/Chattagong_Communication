@@ -112,7 +112,8 @@ componentDidMount(){
    //the following clientsInCoversation are clients currently having active conversations
   const clientsInCoversation = this.state.clientsInCoversation.map((client, index) => {
     return <div key={index}>
-              <button className="roomButton2">
+      <button className="roomButton2" onClick={() =>
+        alert('This client is already in a conversation! Please choose a client form Queue')}>
                  <span><b>{client.clientName}:</b></span> {client.roomId ? client.roomId.slice(-4) : '????'}
               </button>
             </div>
