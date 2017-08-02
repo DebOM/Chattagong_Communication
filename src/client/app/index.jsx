@@ -11,8 +11,8 @@ class SupportDesk extends React.Component {
       messages: JSON.parse(localStorage.getItem('messages') || '[]'),
       user: 'Steaven(Dummy)',
       client: '',
-      inQueuedClients: [],
-      dequeuedClients: [],
+      clientsInQueue: [],
+      clientsInCoversation: [],
     }
     this.messageSubmit = this.messageSubmit.bind(this);
     this.joinRoom = this.joinRoom.bind(this);
@@ -22,16 +22,21 @@ joinRoom = client => {
   console.log('inside joinRoom function!!!!', client)
   this.setState({client: client.clientName})
   this.socket.emit('join helpDesk to room', client, data => {
+    
     let clientToDequeue = client;
     if(data){
       console.log("++++++++this CLient object is ", client);
       this.setState({messages: []});
-      let message = {body: 'You are Now connected!', from: "Admin", time: null, img: null}
-      this.setState({ messages: [...this.state.messages, message] })
-      this.state.inQueuedClients.filter( inQueue => inQueue.socketId !== client.socketId);
-      this.state.dequeuedClients.push(client);
-      console.log('inque+++++++++', this.state.inQueuedClients);
-      console.log('Deque+++++++++', this.state.dequeuedClients);      
+      //IF DATABASE IS READY HERE WE WANT TO QUERY THE DB FOR MESSAGES OF THIS CLIENT
+      let message = {body: `You are Now connected WITH ${client.clientName+':'+client.roomId.slice(-4)} !`, from: "Admin", time: null}
+      this.setState({ messages: [...this.state.messages, message] }) //this message only statically renders in the state. 
+
+      // this.state.clientsInQueue = this.state.clientsInQueue.filter( inQueue => inQueue.socketId !== client.socketId);
+      // this.state.clientsInCoversation.push(client);
+      console.log('Deque+++++++++', this.state.clientsInCoversation); 
+      // shouldComponentUpdate => true;
+      
+           
     }else{
       alert('Failed to connect to this client!!');
     }
@@ -58,17 +63,16 @@ componentDidMount(){
   this.socket.emit('add helpDesk to rooms')
   this.socket.emit('get clients');
 
-  this.socket.on('clients', data => {
+  this.socket.on('clientsInQueue', data => {
     console.log('receive clients', data.clients);
-    this.setState({ inQueuedClients: data.clients}, () => {
-      console.log("here are all the room sockets ", this.state.inQueuedClients.length);
+    this.setState({ clientsInQueue: data.clients}, () => {
+      console.log("here are all the room sockets ", this.state.clientsInQueue.length);
     })
   });
-  
-  this.socket.on('dequeuedClients', data => {
+  this.socket.on('clientsInCoversation', data => {
     console.log('recieved dequeued clients are ,', data.clients);
-    this.setState({dequeuedClients: data.clients}, () => {
-      console.log("here are all the room sockets ", this.state.dequeuedClients.length);
+    this.setState({clientsInCoversation: data.clients}, () => {
+      console.log("here are all the room sockets ", this.state.clientsInCoversation.length);
       
     })
   });
@@ -95,18 +99,18 @@ componentDidMount(){
                 <b>{message.from}: </b>{message.body} {/*message.time*/}  
             </div>
   })
-  //the following inQueuedClients are clients awaiting for help from support team
-  const clientsInQueue = this.state.inQueuedClients.map((client, index) => {
+  //the following clientsInQueue are clients awaiting for help from support team
+  const clientsInQueue = this.state.clientsInQueue.map((client, index) => {
     return <div key={index}>
-              <button className="roomButton" onCl={() =>
+              <button className="roomButton" onClick={() =>
                 this.joinRoom(client)}>
                  <span><b>{client.clientName}:</b></span> {client.roomId ? client.roomId.slice(-4) : '????'}
               </button>
             </div>
   })
 
-   //the following deQueuedClients are clients currently having active conversations
-  const clientsDequeued = this.state.dequeuedClients.map((client, index) => {
+   //the following clientsInCoversation are clients currently having active conversations
+  const clientsDequeued = this.state.clientsInCoversation.map((client, index) => {
     return <div key={index}>
               <button className="roomButton">
                  <span><b>{client.clientName}:</b></span> {client.roomId ? client.roomId.slice(-4) : '????'}
@@ -123,11 +127,11 @@ componentDidMount(){
         </div>
           <div className='_windowBody'>
             <div className= "_windowLeft">
-              <div className="_inQueuedClients">
+              <div className="_clientsInQueue">
                 <h3>Clients In Queue : click a Client To Help</h3>
                 {clientsInQueue}
               </div>
-              <div className="_dequeuedClients">
+              <div className="_clientsInCoversation">
                 <h3>Clients currently in conversation</h3>
                {clientsDequeued}
               </div>
