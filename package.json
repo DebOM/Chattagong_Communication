@@ -1,5 +1,5 @@
 {
-  "name": "Chattagong",
+  "name": "chattagong",
   "version": "1.0.0",
   "description": "A chat messaging intercome widget (npm module) for web applications to integret",
   "main": "index.js",
