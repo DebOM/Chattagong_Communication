@@ -1,7 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/DebOM/Chattagong-communication.png?label=ready&title=Ready)](https://waffle.io/DebOM/Chattagong-communication?utm_source=badge)
 # Chattagong_Communication
 
-Build a chat messaging intercome widget for website, which will help client to engage and interact with customers more effectively and efficiently.
+A chat messaging intercome widget for web applications to integret, the use of this widget will alleviate client-company engagment and interaction more effectively and effortlessly.
 
 
 ## floating widged before activated
