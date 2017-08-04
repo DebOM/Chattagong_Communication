@@ -13,6 +13,6 @@ Build a chat messaging intercome widget for website, which will help client to e
 ## in conversation on the company side
 ![screen shot 2017-08-03 at 8 36 27 pm](https://user-images.githubusercontent.com/17677292/28949589-a814fb64-788b-11e7-950a-908afb3811bf.png)
 
-## in conversation on the client side
+## in conversation on the customer side
 ![screen shot 2017-08-03 at 8 30 23 pm](https://user-images.githubusercontent.com/17677292/28949445-de284ff4-788a-11e7-9a07-0c34920081a9.png)
 
