@@ -3,11 +3,14 @@ const path = require('path');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
+const routes = require('./routes');
+
 
 server.listen(process.env.PORT || 8080);
 console.log('server running....ON PORT 8080');
 
 app.use(express.static(path.join(__dirname, '../client')));
+app.use(routes);
 
 let clientsInQueue = [];
 let clientsInCoversation = [];

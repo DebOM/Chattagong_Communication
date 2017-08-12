@@ -17,6 +17,17 @@ class ChatterBox extends React.Component {
           onClick={() => {
             this.socket.emit('add client to rooms', this.state.user, callback => {
               if(callback){
+                fetch('/users', {
+                  method: 'POST',
+                  data: {
+                    name: this.state.user,
+                  }
+                })
+                  {/* .then(function (response) {
+                    return response.json()
+                  }).then(function (body) {
+                    console.log(body);
+                  }); */}
                 this.insideFooter = (
                   <div className='chatField'>
                     <textarea className='textArea' placeholder="Send a message…" onKeyUp={this.handleSubmit} >
