@@ -1,10 +1,30 @@
 [![Stories in Ready](https://badge.waffle.io/DebOM/Chattagong-communication.png?label=ready&title=Ready)](https://waffle.io/DebOM/Chattagong-communication?utm_source=badge)
-
+https://img.shields.io/npm/v/npm.svg
 # Chattagong_Communication
 
-A chat messaging intercome widget for web applications to integret, the use of this widget will alleviate client-company engagment and interaction more effectively and effortlessly.
+A chat messaging intercome widget for web applications to integret, the uses of this widget will alleviate client-company engagment and interaction more effectively and effortlessly. This is an open source software that you can download, install, modify. 
 
 ![main photo on github](https://user-images.githubusercontent.com/17677292/29389701-bac2fb8e-82b9-11e7-8b30-81f733b896c4.png)
+
+## Table of content
+- [Installation](#installation)
+
+
+- [License](#license)
+- [Links](#links)
+
+## License
+
+The Aimeos TYPO3 extension is licensed under the terms of the GPL Open Source
+license and is available for free.
+
+## Links
+
+* [Web site](https://aimeos.org/integrations/typo3-shop-extension/)
+* [Documentation](https://aimeos.org/docs/TYPO3)
+* [Forum](https://aimeos.org/help/typo3-extension-f16/)
+* [Issue tracker](https://github.com/aimeos/aimeos-typo3/issues)
+* [Source code](https://github.com/aimeos/aimeos-typo3)
 
 ## floating widged before activated
 ![screen shot 2017-08-03 at 8 20 15 pm](https://user-images.githubusercontent.com/17677292/28949202-394b0e0a-7889-11e7-8b40-5a8605922693.png)
