@@ -1,12 +1,10 @@
 [![Stories in Ready](https://badge.waffle.io/DebOM/Chattagong-communication.png?label=ready&title=Ready)](https://waffle.io/DebOM/Chattagong-communication?utm_source=badge)
 
-https://user-images.githubusercontent.com/17677292/29389701-bac2fb8e-82b9-11e7-8b30-81f733b896c4.png
-
-
 # Chattagong_Communication
 
 A chat messaging intercome widget for web applications to integret, the use of this widget will alleviate client-company engagment and interaction more effectively and effortlessly.
 
+![main photo on github](https://user-images.githubusercontent.com/17677292/29389701-bac2fb8e-82b9-11e7-8b30-81f733b896c4.png)
 
 ## floating widged before activated
 ![screen shot 2017-08-03 at 8 20 15 pm](https://user-images.githubusercontent.com/17677292/28949202-394b0e0a-7889-11e7-8b40-5a8605922693.png)
