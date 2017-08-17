@@ -19,17 +19,15 @@ A chat messaging intercome widget for web applications to integret, the uses of 
 
 ## License
 
-The Aimeos TYPO3 extension is licensed under the terms of the GPL Open Source
+The Chittagong Communication is licensed under the terms of the MIT Open Source
 license and is available for free.
 
 ## Links
 
-* [Web site](https://aimeos.org/integrations/typo3-shop-extension/)
-* [Documentation](https://aimeos.org/docs/TYPO3)
-* [Forum](https://aimeos.org/help/typo3-extension-f16/)
+* [Author Website](https://debmozumder.com)
+* [Npm package](https://www.npmjs.com/package/chattagong)
 * [Issue tracker](https://github.com/aimeos/aimeos-typo3/issues)
-* [Source code](https://github.com/aimeos/aimeos-typo3)
-
+* [Source code](https://github.com/DebOM/Chattagong_Communication/issues)
 ## floating widged before activated
 ![screen shot 2017-08-03 at 8 20 15 pm](https://user-images.githubusercontent.com/17677292/28949202-394b0e0a-7889-11e7-8b40-5a8605922693.png)
 
