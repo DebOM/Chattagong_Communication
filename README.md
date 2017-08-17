@@ -24,7 +24,7 @@ license and is available for free.
 
 ## Links
 
-* [Author Website](https://debmozumder.com)
+* [Author Website](http://debmozumder.com)
 * [Npm package](https://www.npmjs.com/package/chattagong)
 * [Issue tracker](https://github.com/aimeos/aimeos-typo3/issues)
 * [Source code](https://github.com/DebOM/Chattagong_Communication/issues)
