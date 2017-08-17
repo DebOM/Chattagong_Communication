@@ -37,8 +37,8 @@ license and is available for free.
 
 * [Author Website](http://debmozumder.com)
 * [Npm package](https://www.npmjs.com/package/chattagong)
-* [Issue tracker](https://github.com/aimeos/aimeos-typo3/issues)
-* [Source code](https://github.com/DebOM/Chattagong_Communication/issues)
+* [Issue tracker](https://github.com/DebOM/Chattagong_Communication/issues)
+* [Source code](https://github.com/DebOM/Chattagong_Communication)
 ## floating widged before activated
 ![screen shot 2017-08-03 at 8 20 15 pm](https://user-images.githubusercontent.com/17677292/28949202-394b0e0a-7889-11e7-8b40-5a8605922693.png)
 
