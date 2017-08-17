@@ -20,8 +20,8 @@ A chat messaging intercome widget for web applications to integret, the uses of 
 
 ## Built with
 * [React](https://facebook.github.io/react/) - A JAVASCRIPT FRAMEWORK FOR BUILDING USER INTERFACES
-* [webpack] (https://webpack.github.io/) - webpack is a module bundler
-* [Socket.IO] (https://socket.io/) Socket.IO is a JavaScript library which enables realtime, bi-directional communication between web clients and servers.  
+* [webpack](https://webpack.github.io/) - webpack is a module bundler
+* [Socket.IO](https://socket.io/) - Socket.IO is a JavaScript library which enables realtime, bi-directional communication between web clients and servers.  
 * [Node.js](https://nodejs.org) - JavaScript runtime
 * [Express](https://expressjs.com/) - Flexible Node.js web application framework
 * [MySQL](https://www.mysql.com/) - Open-source relational database management system
