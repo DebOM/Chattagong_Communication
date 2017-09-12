@@ -1,6 +1,6 @@
 {
   "name": "Chattagong",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A chat messaging intercome widget (npm module) for web applications to integret",
   "main": "index.js",
   "scripts": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DebOM/Project-Chittagong.git"
+    "url": "git+https://github.com/DebOM/Chattagong_Communication.git"
   },
   "author": "DevDeb",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DebOM/Project-Chittagong/issues"
+    "url": "https://github.com/DebOM/Chattagong_Communication/issues"
   },
-  "homepage": "https://github.com/DebOM/Project-Chittagong#readme",
+  "homepage": "https://github.com/DebOM/Chattagong_Communication#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
