@@ -13,21 +13,21 @@
 7 silly cache add   rawSpec: '.',
 7 silly cache add   spec: '/Users/debmozumder/Hack Reactor/Projects At Hack reactor/Chattagong_Communication',
 7 silly cache add   type: 'directory' }
-8 verbose addLocalDirectory /Users/debmozumder/.npm/Chattagong/1.0.2/package.tgz not in flight; packing
+8 verbose addLocalDirectory /Users/debmozumder/.npm/chattagong/1.0.2/package.tgz not in flight; packing
 9 verbose correctMkdir /Users/debmozumder/.npm correctMkdir not in flight; initializing
-10 info lifecycle Chattagong@1.0.2~prepublish: Chattagong@1.0.2
-11 silly lifecycle Chattagong@1.0.2~prepublish: no script for prepublish, continuing
-12 verbose tar pack [ '/Users/debmozumder/.npm/Chattagong/1.0.2/package.tgz',
+10 info lifecycle chattagong@1.0.2~prepublish: chattagong@1.0.2
+11 silly lifecycle chattagong@1.0.2~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/debmozumder/.npm/chattagong/1.0.2/package.tgz',
 12 verbose tar pack   '/Users/debmozumder/Hack Reactor/Projects At Hack reactor/Chattagong_Communication' ]
-13 verbose tarball /Users/debmozumder/.npm/Chattagong/1.0.2/package.tgz
+13 verbose tarball /Users/debmozumder/.npm/chattagong/1.0.2/package.tgz
 14 verbose folder /Users/debmozumder/Hack Reactor/Projects At Hack reactor/Chattagong_Communication
-15 verbose addLocalTarball adding from inside cache /Users/debmozumder/.npm/Chattagong/1.0.2/package.tgz
+15 verbose addLocalTarball adding from inside cache /Users/debmozumder/.npm/chattagong/1.0.2/package.tgz
 16 verbose correctMkdir /Users/debmozumder/.npm correctMkdir not in flight; initializing
-17 silly cache afterAdd Chattagong@1.0.2
-18 verbose afterAdd /Users/debmozumder/.npm/Chattagong/1.0.2/package/package.json not in flight; writing
+17 silly cache afterAdd chattagong@1.0.2
+18 verbose afterAdd /Users/debmozumder/.npm/chattagong/1.0.2/package/package.json not in flight; writing
 19 verbose correctMkdir /Users/debmozumder/.npm correctMkdir not in flight; initializing
-20 verbose afterAdd /Users/debmozumder/.npm/Chattagong/1.0.2/package/package.json written
-21 silly publish { name: 'Chattagong',
+20 verbose afterAdd /Users/debmozumder/.npm/chattagong/1.0.2/package/package.json written
+21 silly publish { name: 'chattagong',
 21 silly publish   version: '1.0.2',
 21 silly publish   description: 'A chat messaging intercome widget (npm module) for web applications to integret',
 21 silly publish   main: 'index.js',
@@ -66,47 +66,47 @@
 21 silly publish      nodemon: '^1.11.0' },
 21 silly publish   readme: '# Project-Chittagong\n\nBuild a chat messaging intercome widget for website, which will help client to engage and interact with customers more effectively and efficiently.\n',
 21 silly publish   readmeFilename: 'README.md',
-21 silly publish   gitHead: '2915436ba306952c7dd8aaf8e0edcba1d6d25e06',
-21 silly publish   _id: 'Chattagong@1.0.2',
-21 silly publish   _shasum: '68590744e60d879966da43c07034eb4d1a6ead93',
+21 silly publish   gitHead: 'f31f9674df30b56d5145829cd91d6519b7fe6235',
+21 silly publish   _id: 'chattagong@1.0.2',
+21 silly publish   _shasum: '039fbe23f0fe5f0d87a69eab1da71625741990ee',
 21 silly publish   _from: '.' }
 22 verbose getPublishConfig undefined
-23 silly mapToRegistry name Chattagong
+23 silly mapToRegistry name chattagong
 24 silly mapToRegistry using default registry
 25 silly mapToRegistry registry https://registry.npmjs.org/
 26 silly mapToRegistry data Result {
-26 silly mapToRegistry   raw: 'Chattagong',
+26 silly mapToRegistry   raw: 'chattagong',
 26 silly mapToRegistry   scope: null,
-26 silly mapToRegistry   escapedName: 'Chattagong',
-26 silly mapToRegistry   name: 'Chattagong',
+26 silly mapToRegistry   escapedName: 'chattagong',
+26 silly mapToRegistry   name: 'chattagong',
 26 silly mapToRegistry   rawSpec: '',
 26 silly mapToRegistry   spec: 'latest',
 26 silly mapToRegistry   type: 'tag' }
-27 silly mapToRegistry uri https://registry.npmjs.org/Chattagong
+27 silly mapToRegistry uri https://registry.npmjs.org/chattagong
 28 verbose publish registryBase https://registry.npmjs.org/
-29 silly publish uploading /Users/debmozumder/.npm/Chattagong/1.0.2/package.tgz
-30 verbose request uri https://registry.npmjs.org/Chattagong
+29 silly publish uploading /Users/debmozumder/.npm/chattagong/1.0.2/package.tgz
+30 verbose request uri https://registry.npmjs.org/chattagong
 31 verbose request sending authorization for write operation
-32 info attempt registry request try #1 at 11:30:16 PM
+32 info attempt registry request try #1 at 11:31:09 PM
 33 verbose request using bearer token for auth
-34 verbose request id 380af3408b9a4ae1
-35 http request PUT https://registry.npmjs.org/Chattagong
-36 http 400 https://registry.npmjs.org/Chattagong
+34 verbose request id 97b88bd2feec56d8
+35 http request PUT https://registry.npmjs.org/chattagong
+36 http 403 https://registry.npmjs.org/chattagong
 37 verbose headers { 'content-type': 'application/json',
 37 verbose headers   'cache-control': 'max-age=300',
-37 verbose headers   'content-length': '54',
+37 verbose headers   'content-length': '91',
 37 verbose headers   'accept-ranges': 'bytes',
-37 verbose headers   date: 'Tue, 12 Sep 2017 03:30:18 GMT',
+37 verbose headers   date: 'Tue, 12 Sep 2017 03:31:13 GMT',
 37 verbose headers   via: '1.1 varnish',
 37 verbose headers   connection: 'keep-alive',
-37 verbose headers   'x-served-by': 'cache-ewr18148-EWR',
+37 verbose headers   'x-served-by': 'cache-ewr18140-EWR',
 37 verbose headers   'x-cache': 'MISS',
 37 verbose headers   'x-cache-hits': '0',
-37 verbose headers   'x-timer': 'S1505187017.527890,VS0,VE2092',
+37 verbose headers   'x-timer': 'S1505187070.992327,VS0,VE3237',
 37 verbose headers   vary: 'Accept-Encoding, Accept' }
-38 verbose request invalidating /Users/debmozumder/.npm/registry.npmjs.org/Chattagong on PUT
-39 error publish Failed PUT 400
-40 verbose stack Error: "Chattagong" is invalid for new packages : Chattagong
+38 verbose request invalidating /Users/debmozumder/.npm/registry.npmjs.org/chattagong on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: You cannot publish over the previously published version 1.0.2. : chattagong
 40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
 40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
 40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
@@ -117,15 +117,15 @@
 40 verbose stack     at emitOne (events.js:96:13)
 40 verbose stack     at Request.emit (events.js:188:7)
 40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
-41 verbose statusCode 400
-42 verbose pkgid Chattagong
+41 verbose statusCode 403
+42 verbose pkgid chattagong
 43 verbose cwd /Users/debmozumder/Hack Reactor/Projects At Hack reactor/Chattagong_Communication
 44 error Darwin 16.7.0
 45 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
 46 error node v6.10.1
 47 error npm  v3.10.10
-48 error code E400
-49 error "Chattagong" is invalid for new packages : Chattagong
+48 error code E403
+49 error You cannot publish over the previously published version 1.0.2. : chattagong
 50 error If you need help, you may report this error at:
 50 error     <https://github.com/npm/npm/issues>
 51 verbose exit [ 1, true ]
