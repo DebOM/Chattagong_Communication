@@ -9,11 +9,14 @@ A chat messaging intercome widget for web applications to integret, the uses of 
 
 ## Table of content
 - [Installation](#installation)
-- [Video Demo](#video Demo)
+- [Video Demo](#Video Demo)
 - [License](#license)
 - [Links](#links)
-## Key Features
 
+## Key Features
+ * Live simultaneous real-time communication with you customers
+ * Increase business sales by answer customers queries that leads to sale
+ 
 ## Built with
 * [React](https://facebook.github.io/react/) - A JAVASCRIPT FRAMEWORK FOR BUILDING USER INTERFACES
 * [webpack](https://webpack.github.io/) - webpack is a module bundler
