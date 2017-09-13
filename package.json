@@ -1,6 +1,6 @@
 {
   "name": "chattagong",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A chat messaging intercome widget for web applications to integret",
   "main": "index.js",
   "scripts": {
@@ -13,9 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/DebOM/Chattagong_Communication.git"
   },
-  "keywords" : [
-    "chatIntercome", "chat", "chatWidget", "intercome", 
-    "messagingAPp", "message company and client"
+  "keywords": [
+    "chatIntercome",
+    "chat",
+    "chatWidget",
+    "intercome",
+    "messagingAPp",
+    "message company and client"
   ],
   "author": "Debasish Mozumder <debasishbd@outlook.com> (http://debmozumder.com)",
   "license": "MIT",
