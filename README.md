@@ -1,8 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/DebOM/Chattagong-communication.png?label=ready&title=Ready)](https://waffle.io/DebOM/Chattagong-communication?utm_source=badge)
-  <a href="https://www.npmjs.com/package/chattagong">
-    <img src="https://badge.fury.io/js/electron-markdownify.svg"
-         alt="Gitter">
-  </a>
+
  
 # Chattagong_Communication
 
