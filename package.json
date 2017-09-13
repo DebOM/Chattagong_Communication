@@ -1,6 +1,6 @@
 {
   "name": "chattagong",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A chat messaging intercome widget for web applications to integret",
   "main": "index.js",
   "scripts": {
