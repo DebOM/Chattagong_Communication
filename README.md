@@ -25,7 +25,7 @@ A chat messaging intercome widget for web applications to integret, the uses of 
 * [Express](https://expressjs.com/) - Flexible Node.js web application framework
 * [MySQL](https://www.mysql.com/) - Open-source relational database management system
 
-## VideoDemo
+## Video Demo
 
 ## Installation 
 ```
