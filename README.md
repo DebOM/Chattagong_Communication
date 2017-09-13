@@ -1,6 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/DebOM/Chattagong-communication.png?label=ready&title=Ready)](https://waffle.io/DebOM/Chattagong-communication?utm_source=badge)
 [![npm version](https://badge.fury.io/js/chattagong.svg)](https://badge.fury.io/js/chattagong)
-
+https://img.shields.io/travis/USER/REPO.svg
  
 # Chattagong_Communication
 
