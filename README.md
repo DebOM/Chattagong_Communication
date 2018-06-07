@@ -29,7 +29,12 @@ A chat messaging intercome widget for web applications to integret, the uses of 
 
 ## Installation 
 ```
-npm install chattagong
+- npm install chattagong
+- cd into the repo directory
+- npm install
+- npm run dev
+- npm start
+- launch http://localhost:8080 on you browser
 
 ```
 ## License
